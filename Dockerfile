@@ -1,10 +1,5 @@
 #step 1: BUILD
-FROM            docker.io/library/openjdk:21-ea AS builder
+FROM            docker.io/library/python:3.12
 WORKDIR         /app
 COPY            . /app/
-RUN             chmod +x gradlew && ./gradlew bootJar --no-daemon -x test
-
-#step 2 RUN
-From            docker.io/redhat/ubi9
-COPY            --from=builder /app/build/libs/*.jar portfolio-service.jar
-ENTRYPOINT      ["java", "-jar", "portfolio-service.jar"]
+RUN
