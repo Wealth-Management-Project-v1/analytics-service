@@ -1,0 +1,11 @@
+name: wmp-ci-analytics-service
+run-name: ${{ github.actor }} is testing out GitHub Actions
+on: [push]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: message hello world
+        run: echo hello
+      - name: list
+        run: ls
