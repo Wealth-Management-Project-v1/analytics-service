@@ -6,6 +6,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: build
-        run: docker-build
+        run: make docker-build
       - name: list
         run: ls -l
