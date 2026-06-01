@@ -5,7 +5,7 @@ jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
-      - name: build
-        run: make docker-build
       - name: list
         run: ls -l
+      - name: build
+        run: make docker-build
