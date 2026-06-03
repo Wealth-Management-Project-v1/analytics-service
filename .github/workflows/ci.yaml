@@ -6,7 +6,13 @@ jobs:
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v6
-      - name: list
-        run: ls -l
-      - name: build
+      - name: Docker build
         run: make docker-build
+  eks-deploy:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          repository: Wealth-Management-Project-v1/helm-v1
+      - name: Helm deploy
+        run: make eks-deploy
