@@ -1,10 +1,10 @@
 docker-build:
 	git pull
 	aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 200915316788.dkr.ecr.us-east-1.amazonaws.com
-	docker build -t  200915316788.dkr.ecr.us-east-1.amazonaws.com/analytics-service:latest .
-	docker push 200915316788.dkr.ecr.us-east-1.amazonaws.com/analytics-service:latest
+	docker build -t  200915316788.dkr.ecr.us-east-1.amazonaws.com/analytics-service:$(image_tag) .
+	docker push 200915316788.dkr.ecr.us-east-1.amazonaws.com/analytics-service:$(image_tag)
 
 eks-deploy:
 	git pull
 	aws eks update-kubeconfig --name dev
-	helm upgrade -i analytics-service helm -f helm/values/analytics-service
+	helm upgrade -i analytics-service helm -f helm/values/analytics-service --set image_tag=$(image_tag)
