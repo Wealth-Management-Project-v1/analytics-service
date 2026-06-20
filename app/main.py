@@ -56,7 +56,7 @@ app.add_middleware(
 )
 
 # Prometheus metrics
-Instrumentator().instrument(app).expose(app, endpoint="/metrics")
+# Instrumentator().instrument(app).expose(app, endpoint="/metrics")
 
 # Routes
 app.include_router(api_router)
