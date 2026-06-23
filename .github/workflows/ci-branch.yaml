@@ -1,0 +1,22 @@
+name: CI-MAIN-Analytics-Service
+on:
+  push:
+    branches-ignore:
+      - main
+  workflow_dispatch:
+
+jobs:
+  Compile:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v6
+      - name: Compile
+        run: echo "Compiling Application.."
+
+  Test:
+    runs-on: self-hosted
+    needs: Compile
+    steps:
+      - uses: actions/checkout@v6
+      - name: Test
+        run: echo "Testing Application.."
