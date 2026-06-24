@@ -6,59 +6,6 @@ on:
   workflow_dispatch:
 
 jobs:
-  Docker-Build:
-    runs-on: self-hosted
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v6
-      - name: Docker build
-        run: make docker-build image_tag=${GITHUB_SHA}
+  Call-CI:
+    uses: Wealth-Management-Project-v1/github-actions-reusable-workflows/.github/workflows/ci.yaml@main
 
-  Test-Cases:
-    runs-on: self-hosted
-    needs: Docker-Build
-    steps:
-      - uses: actions/checkout@v6
-      - name: Build
-        run: echo "Building Application"
-
-  Dev-Deploy:
-    needs: Dev-Deploy
-    runs-on: self-hosted
-    steps:
-      - uses: actions/checkout@v6
-      - uses: actions/checkout@v6
-        with:
-          repository: Wealth-Management-Project-v1/helm-v1
-          path: helm
-      - name: Helm deploy
-        run: make eks-deploy image_tag=${GITHUB_SHA}
-
-  QA-Deploy:
-    runs-on: self-hosted
-    needs: Dev-Deploy
-    environment: QA
-    steps:
-      - uses: actions/checkout@v6
-      - name: Build
-        run: echo "Building Application"
-
-  ## at this stage we hwill be having End to End to test cases and performance test case based on the project or may be the UAT and prod runs on a different pipeline
-
-  UAT-Deplpy:
-    runs-on: self-hosted
-    needs: QA-Deploy
-    environment: UAT
-    steps:
-      - uses: actions/checkout@v6
-      - name: Build
-        run: echo "Building Application"
-
-  Prod-Deploy:
-    runs-on: self-hosted
-    needs: UAT-Deplpy
-    environment: PROD
-    steps:
-      - uses: actions/checkout@v6
-      - name: Build
-        run: echo "Building Application"
