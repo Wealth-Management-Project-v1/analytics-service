@@ -43,3 +43,4 @@ argocd-deploy:
 
 	argocd app sync analytics-service
 	argocd app wait analytics-service --health --timeout 300
+
